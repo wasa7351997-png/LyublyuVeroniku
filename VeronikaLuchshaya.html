@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>С днём рождения, Вероника 💖</title>
+<style>
+  :root {
+    --main: #ff6b9d;
+    --text: #3d2b3d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(135deg, #ffeef5, #fff5e8);
+    color: var(--text);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  .hearts-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .hearts-bg span {
+    position: absolute;
+    bottom: -60px;
+    font-size: 24px;
+    opacity: 0.5;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 22px 80px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 30px 0 10px;
+  }
+  .cake {
+    font-size: 62px;
+    display: inline-block;
+    animation: bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+  }
+  h1 {
+    font-size: 2.8rem;
+    line-height: 1.15;
+    margin: 18px 0 10px;
+    color: var(--main);
+    text-shadow: 1px 1px 0 #ffd1e0;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    color: #8a5a72;
+    font-style: italic;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 107, 157, 0.25);
+    border-radius: 18px;
+    padding: 26px 24px;
+    margin: 26px 0;
+    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .card h2 {
+    font-size: 1.45rem;
+    color: var(--main);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card p {
+    font-size: 1.06rem;
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  .card p:last-child { margin-bottom: 0; }
+
+  .qualities {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .qualities li {
+    background: linear-gradient(90deg, #fff0f6, #fff8f0);
+    border-left: 4px solid var(--main);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 1.04rem;
+    line-height: 1.6;
+    transition: transform 0.25s ease;
+  }
+  .qualities li:hover {
+    transform: translateX(4px);
+  }
+  .qualities li strong { color: var(--main); }
+
+  .confession {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.12), rgba(244, 201, 93, 0.12));
+    border: 1px dashed rgba(255, 107, 157, 0.5);
+    border-radius: 24px;
+  }
+  .confession .big {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--main);
+    line-height: 1.35;
+    margin: 10px 0 16px;
+  }
+
+  .btn-heart {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 15px 38px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    color: #fff;
+    background: linear-gradient(135deg, var(--main), #ff8fab);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(255, 107, 157, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-heart:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 12px 30px rgba(255, 107, 157, 0.55);
+  }
+  .btn-heart:active { transform: scale(0.97); }
+
+  .signature {
+    text-align: right;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #8a5a72;
+    margin-top: 18px;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.95rem;
+    color: #b08a9e;
+  }
+
+  .confetti {
+    position: fixed;
+    top: -20px;
+    z-index: 999;
+    pointer-events: none;
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    to { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+  }
+  @media (max-width: 480px) {
+    .card { padding: 22px 18px; }
+    .card h2 { font-size: 1.25rem; }
+    .confession .big { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hearts-bg" id="heartsBg"></div>
+
+<div class="wrap">
+
+  <div class="header">
+    <div class="cake">🎂</div>
+    <h1>С днём рожденияяя любименькая мояяя!!</h1>
+    <p class="subtitle">Сегодня весь мир чуть ярче — потому что в нём есть ты💋</p>
+  </div>
+
+  <div class="card">
+    <h2>🌸 Почему этот день особенный</h2>
+    <p>Потому что ровно 18 лет назад появилась ты — и мир стал добрее, теплее и красивее. Я очень хочу, чтобы ты знала: для меня это самый важный день в году, ведь он подарил мне такого сладенького котеночка)</p>
+  </div>
+
+  <div class="card">
+    <h2>💖 Ты у меня саааамая-самая лучшая!!</h2>
+    <ul class="qualities">
+      <li>Решил написать тебе маааааленький сайт и письмецо, потому что это единственное в чём я довольно неплох (кроме того чтобы скучать по тебе, тут я ваще мастер спорта нах) </li>
+      <li>Я очень много что понял за время, проведенное с тобой, например, что любовь — это не только когда вы вместе пьёте чай по утрам. Это когда я просыпаюсь и первым делом проверяю, не сбросился ли звонок, спишь ли ты ещё. Это когда я вижу что-то смешное и первая мысль — "надо рассказать ей". Это когда я засыпаю и представляю, что ты рядом</li>
+      <li>Когда я думаю о тебе мне становится безумно тепло, даже на моем блядском Севере. Официально заявляю: ты стала лучшим, что со мной случалось, даже не смотря на то, что ты каждый день заставляешь меня безумно хотеть к тебе и никогда тебя не отпускать</li>
+      <li>Я хочу, чтобы этот год принёс тебе много радости, чтобы ты чаще улыбалась, чтобы твои глаза горели от того, что ты делаешь и чтобы ты всегда помнила: где-то (пока что далеко) есть человек, который думает о тебе постоянно. Кстати эт я)</li>
+      <li>И хотя между нами сейчас сотни километров, ты всегда для меня ближе всех, в моих мыслях и в самом сердце. Я очень хочу чтобы следующий твой день рождения мы уже праздновали вместе, а не вот так. С днем рождения любовь моя, и помни, ты у меня:</li>
+      <li><strong>Самая светлая.</strong> Рядом с тобой становится спокойно и радостно, как в самый солнечный день</li>
+      <li><strong>Самая красивая.</strong> И снаружи тебе нет равных, и внутри ты сногсшибательна той красотой, что видна в поступках и словах</li>
+      <li><strong>Самая умная.</strong> С тобой интересно говорить о чём угодно, и ты умеешь удивить мыслью, которую я буду вспоминать весь день</li>
+      <li><strong>Самая заботливая.</strong> Ты замечаешь мелочи и умеешь поддержать так, как никто другой</li>
+      <li><strong>Самая смешная.</strong> Твой смех — лучшее, что можно услышать, и я готов делать что угодно, чтобы слушать его постоянно</li>
+      <li><strong>Самая настоящая.</strong> С тобой не нужно притворяться — и это самое редкое и самое дорогое</li>
+      <li><strong>Самая любимая</strong> Это само собой, ты слишком прекрасна, невозможно любить кого-то другого, если в жизни есть ты</li>
+      <li><strong>Самая лучшая</strong> Правда, для меня в этом мире нет никого, кто мог бы хоть немного приблизиться к тебе, ты восхитительна, чудо моё)</li>
+    </ul>
+  </div>
+
+  <div class="card confession">
+    <h2 style="justify-content:center">Верониииик, а знаешь что??</h2>
+    <p class="big">А я тебя люблююююю очень сильноо!!!💋💋</p>
+    <p>Люблю за то, какая ты есть.. За твой смех, за твой характер, за то, как ты смотришь на мир, за твою заботу обо мне, за то что так хорошо ко мне относишься и за каждую нашу секунду вместе. Ты делаешь меня самым счастливым просто тем, что ты рядом, спасибо тебе огромное, что ты есть.</p>
+    <button class="btn-heart" id="loveBtn">Нажми, если любишь ❤️</button>
+    <p class="signature">— твой хороший мальчик)</p>
+  </div>
+
+  <div class="footer">
+    Сделано с любовью, специально для самой прекрасной во всём мире Вероники
+  </div>
+</div>
+
+<script>
+
+const bg = document.getElementById('heartsBg');
+const icons = ['💖','💕','💗','❤️','🌸'];
+for (let i = 0; i < 11; i++) {
+  const s = document.createElement('span');
+  s.textContent = icons[Math.floor(Math.random() * icons.length)];
+  s.style.left = Math.random() * 100 + '%';
+  s.style.fontSize = (16 + Math.random() * 22) + 'px';
+  s.style.animationDuration = (8 + Math.random() * 10) + 's';
+  s.style.animationDelay = (Math.random() * 12) + 's';
+  bg.appendChild(s);
+}
+
+const cards = document.querySelectorAll('.card');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+cards.forEach(c => obs.observe(c));
+
+document.getElementById('loveBtn').addEventListener('click', function () {
+  const colors = ['#ff6b9d', '#f4c95d', '#ff9a76', '#ffd1e0', '#fff', '#c084fc', '#7dd3fc', '#86efac'];
+  const emojis = ['💖','💕','✨','💗','💝','💋'];
+
+  for (let i = 0; i < 240; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    const isEmoji = Math.random() > 0.5;
+
+    if (isEmoji) {
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.fontSize = (12 + Math.random() * 22) + 'px';
+    } else {
+      const size = 5 + Math.random() * 10;
+      el.style.width = size + 'px';
+      el.style.height = size + 'px';
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    }
+
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (1.8 + Math.random() * 3) + 's';
+    el.style.animationDelay = (Math.random() * 0.6) + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 5500);
+  }
+
+  this.textContent = 'Я тоже тебя люблю! 💖';
+  this.style.background = 'linear-gradient(135deg, #f4c95d, #ff9a76)';
+});
+
+</script>
+</body>
+</html>
